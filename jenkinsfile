@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building app from Jenkins!'
+            }
+        }
+         stage('Test') {
+            steps {
+                echo 'Testing an app from Jenkins!'
+            }
+        }
+         stage('Depoly') {
+            steps {
+                echo 'Depolying an app from Jenkins today!'
+            }
+        }
+    }
+}
