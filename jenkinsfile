@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building app from Jenkins this morning!'
+                echo 'Building app from Jenkins this momday!'
             }
         }
          stage('Test') {
             steps {
-                echo 'Testing an app from Jenkins! this afternoon'
+                echo 'Testing an app from Jenkins! this tuesday'
             }
         }
          stage('Depoly') {
             steps {
-                echo 'Depolying an app from Jenkins today march 03'
+                echo 'Depolying an app from Jenkins today march 15'
             }
         }
     }
