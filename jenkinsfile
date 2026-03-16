@@ -2,47 +2,42 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "newapp"   // Local Docker image name
-        CONTAINER_NAME = "newapp-container"  // Name of running container
-        APP_PORT = "8085"  // Port your Node.js app listens on
+        IMAGE_NAME = "newapp"
+        CONTAINER_NAME = "newapp-container"
+        APP_PORT = "8085"
     }
 
     stages {
 
         stage('Clone Repository') {
             steps {
-                // Pull code from GitHub
                 git branch: 'main', url: 'https://github.com/li33iez/yellow.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Build Docker image from Dockerfile (includes index.js and package.json)
-                sh "docker build -t $IMAGE_NAME ."
+                bat "docker build -t %IMAGE_NAME% ."
             }
         }
 
         stage('Deploy Container') {
             steps {
-                sh '''
-                # Stop old container if it exists
-                docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
-
-                # Run new container
-                docker run -d -p $APP_PORT:$APP_PORT --name $CONTAINER_NAME $IMAGE_NAME
-                '''
+                bat """
+                docker stop %CONTAINER_NAME% || exit 0
+                docker rm %CONTAINER_NAME% || exit 0
+                docker run -d -p %APP_PORT%:%APP_PORT% --name %CONTAINER_NAME% %IMAGE_NAME%
+                """
             }
         }
     }
 
     post {
         success {
-            echo "✅ Docker container $CONTAINER_NAME is running locally on port $APP_PORT"
+            echo "Docker container deployed successfully"
         }
         failure {
-            echo "❌ Pipeline failed. Check logs for errors."
+            echo "Pipeline failed"
         }
     }
 }
