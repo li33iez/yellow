@@ -33,5 +33,5 @@ jobs:
             docker rm -f newapp || true
             docker build -t new:latest .
             docker run --name newapp -d -p 8089:80 new
-EOF
+          EOF
           
