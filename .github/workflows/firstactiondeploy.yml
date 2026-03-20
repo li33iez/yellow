@@ -31,7 +31,7 @@ jobs:
             cd /home/ec2-user/today
             git pull origin main
             docker rm -f newapp || true
-            docker build --no-cache -t new:latest .
+            docker build --no-cache -t april:latest .
             docker run --name newapp -d -p 8089:80 new
           EOF
           
