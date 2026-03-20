@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            cd /home/ec2-user/app
+            cd /home/ec2-user/today
             git pull origin main
             docker build -t new:latest .
             docker container run --name "newapp" -d -p 8089:80 new
