@@ -35,5 +35,5 @@ jobs:
             docker build --no-cache -t april:latest .
 
             # run new container
-            docker run -d -p 8089:80 --name APapp april:latest
+            docker run --name APapp -d -p 8088:80 april:latest
           EOF
