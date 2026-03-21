@@ -1,18 +1,9 @@
-FROM node:18-alpine
+FROM nginx:latest
 
 WORKDIR /app
 
-# Copy only dependency files first (for caching)
-COPY package*.json ./
 
-RUN npm cache clean --force
-RUN npm install
+COPY index.html /usr/share/nginx/html
 
-# Copy all source code
-COPY . .
 
-# Optional: document port
-EXPOSE 8085
-
-# Run the app
-CMD ["node", "index.js"]
+CMD ["nginx", "-g", "daemon off;"]
