@@ -29,7 +29,7 @@ jobs:
             git pull origin main
 
             # stop and remove old container
-            docker rm -f newapp || true
+            docker rm -f APapp  || true
 
             # rebuild image (no cache to reflect changes)
             docker build --no-cache -t april:latest .
