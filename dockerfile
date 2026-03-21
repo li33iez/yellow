@@ -1,10 +1,10 @@
 FROM nginx:latest
 
-WORKDIR /app
+WORKDIR /home/ec2-user/app
 
 
 COPY index.html /usr/share/nginx/html
-COPY . .
+
 
 
 CMD ["nginx", "-g", "daemon off;"]
